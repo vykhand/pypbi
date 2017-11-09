@@ -14,3 +14,6 @@ DATASET_BY_ID = API_BASE_GROUP + "datasets/%(ds_id)"
 
 TABLES_LIST_DEFAULT = API_BASE + "/datasets/%(ds_id)/tables"
 TABLES_LIST = API_BASE_GROUP + "datasets/%(ds_id)/tables"
+
+TABLE_DELETE_ROWS_DEFAULT = API_BASE + "/datasets/%(ds_id)/tables/%(tbl_name)/rows"
+TABLE_DELETE_ROWS = API_BASE_GROUP + "/datasets/%(ds_id)/tables/%(tbl_name)/rows"

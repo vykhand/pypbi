@@ -1,6 +1,7 @@
 from . import constants as const
 import logging
 log = logging.getLogger()
+import requests
 
 class Workspace(object):
     def __init__(self, pbi, wks_id = None, wks_name = "", isReadOnly = False):
@@ -25,7 +26,7 @@ class Workspace(object):
         else:
             datasets = self._pbi.request(const.DATASET_LIST % self.wks_id)
         for ds in datasets:
-            yield(Dataset(self._pbi, self,  ds_id = ds["id"], ds_name = ds["name"], details = ds))
+            yield(Dataset(self,  ds_id = ds["id"], ds_name = ds["name"], details = ds))
     def get_dataset_by_id(self, ds_id):
         if self.wks_id is None:
             dataset = self._pbi.request(const.DATASET_BY_ID_DEFAULT % ds_id)
@@ -48,10 +49,12 @@ class Dataset(object):
         self.ds_id = ds_id
         self.ds_name = ds_name
         self.details = details
+
     def __str__(self):
         return "Dataset ID: %s Name: %s" % (self.ds_id, self.ds_name)
+
     def get_tables(self):
-        if "addRowsAPIEnabled" not in details:
+        if "addRowsAPIEnabled" not in self.details:
             raise RuntimeError("cannot get the addRowsAPIEnabled property")
         if not self.details["addRowsAPIEnabled"]:
             log.warning("Non-push datasets do not support table API")
@@ -71,3 +74,14 @@ class Table(object):
         self._ds = ds
         self._wks = ds._wks
         self.tbl_name = tbl_name
+        self._is_def_workspace = self._wks.wks_id is None
+
+    def delete_rows(self):
+        headers = {"Authorization": "Bearer " + self._pbi._aad_token}
+
+        if self._is_def_workspace:
+            req = const.TABLE_DELETE_ROWS_DEFAULT % (self._ds.ds_id, self.tbl_name)
+        else:
+            req = const.TABLE_DELETE_ROWS % (self._wks.wks_id, self._ds.ds_id, self.tbl_name)
+
+        response = requests.delete(req, headers=headers)
