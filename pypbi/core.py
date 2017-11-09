@@ -4,6 +4,9 @@ import json
 from . import constants as const
 from . import classes as C
 
+import logging
+log = logging.getLogger()
+
 class PowerBI(object):
     def __init__(self, user_name, password, client_id):
         self._user_name, self._password, self._client_id  = \
@@ -32,8 +35,12 @@ class PowerBI(object):
         '''
         headers = {"Authorization": "Bearer " + self._aad_token}
 
+        log.debug(req)
+
         response = requests.get(req, headers=headers)
         resp = json.loads(response.text)
+
+        log.debug(response.text)
 
         if "error" in resp:
             raise RuntimeError("Site returned error: " + str(resp))
@@ -43,9 +50,12 @@ class PowerBI(object):
         returns workspaces(groups) as iterator of tuples (id, name)
         """
         groups =  self.request(const.GROUPS_LIST)
-
-        for g in groups:
-            yield C.Workspace(self, g["id"], g["name"], g["isReadOnly"])
+        ret = []
 
         #return default workspace (My workspace)
-        yield C.Workspace(self)
+        ret.append( C.Workspace(self))
+
+        for g in groups:
+            ret.append( C.Workspace(self, g["id"], g["name"], g["isReadOnly"]))
+
+        return ret
