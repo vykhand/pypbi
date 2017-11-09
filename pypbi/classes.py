@@ -35,34 +35,33 @@ class Workspace(object):
                                                                     for ds in datasets]
 
     def get_dataset_by_id(self, ds_id):
-        if self.wks_id is None:
-            dataset = self._pbi.request(const.DATASET_BY_ID_DEFAULT.format(**vars(self)))
-        else:
-            dataset = self._pbi.request(const.DATASET_BY_ID.format(**vars(self)))
-
-        return Dataset(self,  ds_id = dataset["id"],
-                        ds_name = dataset["name"], details = dataset)
+        ret = [d for d in self.get_datasets() if d.ds_id == ds_id]
+        return ret[0] if len(ret) > 0 else None
 
 class Dataset(object):
     def __init__(self, wks, ds_id, ds_name = None, details = None):
         '''
         Constructs a dataset. If only the ID has been passed, retrieve the dataset
         '''
-        if  details is None or ds_name is None:
-            self = wks.get_dataset_by_id(ds_id)
-            return self
+
         self._pbi = wks._pbi
         self._wks = wks
         self.wks_id = wks.wks_id
         self.ds_id = ds_id
-        self.ds_name = ds_name
-        self.details = details
+        if  details is None or ds_name is None:
+            ds = wks.get_dataset_by_id(ds_id)
+            self.ds_name = ds.ds_name
+            self.details = ds.details
+        else:
+            self.ds_name = ds_name
+            self.details = details
 
     def __str__(self):
         return "Dataset ID: %s Name: %s" % (self.ds_id, self.ds_name)
 
     def __repr__(self):
-        return str(self)
+        log.debug(vars(self))
+        return "Dataset ID: %s Name: %s" % (self.ds_id, self.ds_name)
 
     def get_tables(self):
         if "addRowsAPIEnabled" not in self.details:
