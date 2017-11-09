@@ -6,9 +6,9 @@ Important note: this software comes with no warranty and provided as is.
 
 This is an unofficial python wrapper around [PowerBI rest API][1]
 
-It only wraps those functions that I needed for my projects
+It only wraps those functions that I needed for my projects.
 
-If you are missing something in this project, you are free to do a pull request or to demand your money back :)
+Pull requests are welcome.
 
 ## Usage
 
