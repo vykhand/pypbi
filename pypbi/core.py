@@ -1,8 +1,8 @@
 import adal
 import requests
 import json
-from . import constants as const
-from . import classes as C
+from pypbi import constants as const
+from pypbi import classes as C
 
 import logging
 log = logging.getLogger()
@@ -13,7 +13,7 @@ class PowerBI(object):
              user_name, password, client_id
 
         self._aad_token = None
-        self._is_connected = False
+        self.is_connected = False
 
     def connect(self):
         context = adal.AuthenticationContext(
@@ -28,8 +28,8 @@ class PowerBI(object):
                                  self._client_id)
 
         self._aad_token = token_response["accessToken"]
-        self._is_connected = True
-    def request(self, req):
+        self.is_connected = True
+    def _request(self, req):
         '''
         sends a request to PBI Service. It must be formed beforehand
         '''
@@ -49,7 +49,7 @@ class PowerBI(object):
         """
         returns workspaces(groups) as iterator of tuples (id, name)
         """
-        groups =  self.request(const.GROUPS_LIST)
+        groups =  self._request(C.get_api_call("get_groups"))
         ret = []
 
         #return default workspace (My workspace)
@@ -59,3 +59,41 @@ class PowerBI(object):
             ret.append( C.Workspace(self, g["id"], g["name"], g["isReadOnly"]))
 
         return ret
+
+    def get_workspace_by_id(self, wks_id):
+        """get workspace (or group in PBI terminology) by id
+        If "default" is specified, then the default workspace is returned
+        """
+        ret = [w for w in self.get_workspaces() if w.wks_id == wks_id]
+        return ret[0] if len(ret) > 0 else None
+
+    def get_workspace_by_name(self, wks_name):
+        """
+        Returns workspace by name
+        """
+        ret = [w for w in self.get_workspaces() if w.wks_name == wks_name]
+        return ret[0] if len(ret) > 0 else None
+
+    def get_report_by_id(self, report_id):
+        """Returns report by id"""
+        reports  = []
+        for w in self.get_workspaces():
+            reports  = reports + w.get_report_by_id(report_id)
+        if len(reports) > 1:
+            raise ValueError("Duplicate ReportIDs")
+        return reports[0] if len(reports) > 0 else None
+
+    def get_report_by_name(self, report_name, wks_name = None):
+        """Retuns powerBI report given name
+        If workspace is None, assumes there are no duplicates
+        """
+        wks = self.get_workspace_by_name(wks_name)
+        if wks:
+            return wks.get_report_by_name(report_name)
+        else:
+            reports  = []
+            for w in self.get_workspaces():
+                reports  = reports + w.get_report_by_name(report_name)
+            if len(reports) > 1:
+                raise ValueError("Duplicate ReportIDs")
+            return reports[0] if len(reports) > 0 else None

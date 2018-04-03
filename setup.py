@@ -9,5 +9,6 @@ setup(
   url = 'https://github.com/vykhand/pypbi', # use the URL to the github repo
   download_url = 'https://github.com/vykhand/pypbi/archive/0.0.1.tar.gz', # I'll explain this in a second
   keywords = ['powerbi'], # arbitrary keywords
+  install_requires=['pyyaml'],
   classifiers = [],
 )
