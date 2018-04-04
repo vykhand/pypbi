@@ -8,3 +8,7 @@ __pycache__/
 .ipynb_checkpoints
 .vscode
 .pypirc
+test.ipynb
+MANIFEST
+pypbi.egg-info
+dist
