@@ -6,7 +6,7 @@ import yaml
 import os
 dirname = os.path.dirname(__file__)
 
-API_CALLS = yaml.load(os.path.join(dirname, "api_calls.yaml"))
+API_CALLS = yaml.load(open(os.path.join(dirname, "api_calls.yaml"),"r"))
 
 def get_api_call(callname, wks_id = None):
     """gets an api call depending whether wks_id is None(default workspace)
@@ -21,9 +21,17 @@ def get_api_call(callname, wks_id = None):
 
 class EntityMixin(object):
     def _get_entities(self, entity_class, api_call):
-        cll = get_api_call(api_call)
+        cll = get_api_call(api_call, self.wks_id)
         ents = self._pbi._request(cll.format(**vars(self)))
         return [entity_class(self, e) for e in ents]
+
+class GenerateTokenMixin(object):
+    def get_token(self, access_level, identities = ""):
+        cll = get_api_call("get_report_token", self.wks_id)
+        if identities != "": identities = ', "identities": ' + identities
+        data = '{{"accessLevel": "{}" {} }} '.format(access_level, identities)
+        token = self._pbi._request(cll.format(**vars(self)), data = data)
+        return token
 
 class Workspace(EntityMixin):
     def __init__(self, pbi, wks_id = None, wks_name = "", isReadOnly = False):
@@ -69,7 +77,7 @@ class Workspace(EntityMixin):
         ret = [d for d in self.get_dashboards() if d.dashboard_name == dashboard_name]
         return ret[0] if len(ret) > 0 else None
 
-def Dashboard(EntityMixin):
+class Dashboard(EntityMixin, GenerateTokenMixin):
     def __init__(self, wks, dashboard):
         self._pbi = wks._pbi
         self._wks = wks
@@ -82,12 +90,9 @@ def Dashboard(EntityMixin):
     def __repr__(self):
         log.debug(vars(self))
         return "Report ID: %s Name: %s" % (self.dashboard_id, self.dashboard_name)
-    def get_token(self, access_level, identities):
-        cll = get_api_call("get_dashboard_token")
-        token = self._pbi._request(cll.format(**vars(self)))
-        return token
 
-def Report(EntityMixin):
+
+class Report(EntityMixin, GenerateTokenMixin):
     def __init__(self, wks, report):
         self._pbi = wks._pbi
         self._wks = wks
@@ -103,12 +108,6 @@ def Report(EntityMixin):
     def __repr__(self):
         log.debug(vars(self))
         return "Report ID: %s Name: %s" % (self.report_id, self.report_name)
-
-    def get_token(self, access_level, identities):
-        cll = get_api_call("get_report_token")
-        token = self._pbi._request(cll.format(**vars(self)))
-        return token
-
 
 class Dataset(EntityMixin):
     def __init__(self, wks, ds):
@@ -138,14 +137,14 @@ class Dataset(EntityMixin):
         return self._get_entities(Table, "get_tables")
 
 class Table(object):
-    def __init__(self, ds, tbl_name):
+    def __init__(self, ds, tbl):
         self._pbi = ds._wks._pbi
         self._ds = ds
         self._wks = ds._wks
 
         self.ds_id = ds.ds_id
         self.wks_id = ds._wks.wks_id
-        self.tbl_name = tbl_name
+        self.tbl_name = tbl["name"]
     def _str_(self):
         return "Table: %s" % (self.tbl_name)
 
@@ -155,6 +154,6 @@ class Table(object):
     def delete_rows(self):
         headers = {"Authorization": "Bearer " + self._pbi._aad_token}
 
-        req = get_api_call("delete_table_rows").format(**vars(self))
-
+        req = get_api_call("delete_table_rows", self.wks_id).format(**vars(self))
+        log.debug("Deleting rows with request: " + req)
         response = requests.delete(req, headers=headers)

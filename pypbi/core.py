@@ -29,15 +29,18 @@ class PowerBI(object):
 
         self._aad_token = token_response["accessToken"]
         self.is_connected = True
-    def _request(self, req):
+    def _request(self, req, request_type = "get", add_headers = {}, **params):
         '''
         sends a request to PBI Service. It must be formed beforehand
         '''
         headers = {"Authorization": "Bearer " + self._aad_token}
+        headers.update(add_headers)
 
         log.debug(req)
-
-        response = requests.get(req, headers=headers)
+        req_func = {"get": requests.get,
+                    "post": requests.post,
+                    "delete": requests.delete}
+        response = req_func[request_type](req, headers=headers, **params)
         resp = json.loads(response.text)
 
         log.debug(response.text)
@@ -78,7 +81,8 @@ class PowerBI(object):
         """Returns report by id"""
         reports  = []
         for w in self.get_workspaces():
-            reports  = reports + w.get_report_by_id(report_id)
+            r = w.get_report_by_id(report_id)
+            if r: reports.append(r)
         if len(reports) > 1:
             raise ValueError("Duplicate ReportIDs")
         return reports[0] if len(reports) > 0 else None
@@ -93,7 +97,8 @@ class PowerBI(object):
         else:
             reports  = []
             for w in self.get_workspaces():
-                reports  = reports + w.get_report_by_name(report_name)
+                r = w.get_report_by_name(report_name)
+                if r: reports.append(r)
             if len(reports) > 1:
                 raise ValueError("Duplicate ReportIDs")
             return reports[0] if len(reports) > 0 else None
