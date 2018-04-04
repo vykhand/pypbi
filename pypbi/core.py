@@ -29,18 +29,15 @@ class PowerBI(object):
 
         self._aad_token = token_response["accessToken"]
         self.is_connected = True
-    def _request(self, req, request_type = "get", add_headers = {}, **params):
+    def _request(self, req,  **params):
         '''
         sends a request to PBI Service. It must be formed beforehand
         '''
         headers = {"Authorization": "Bearer " + self._aad_token}
-        headers.update(add_headers)
 
         log.debug(req)
-        req_func = {"get": requests.get,
-                    "post": requests.post,
-                    "delete": requests.delete}
-        response = req_func[request_type](req, headers=headers, **params)
+
+        response = requests.get(req, headers=headers, **params)
         resp = json.loads(response.text)
 
         log.debug(response.text)
@@ -48,6 +45,7 @@ class PowerBI(object):
         if "error" in resp:
             raise RuntimeError("Site returned error: " + str(resp))
         return json.loads(response.text)["value"]
+
     def get_workspaces(self):
         """
         returns workspaces(groups) as iterator of tuples (id, name)

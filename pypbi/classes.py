@@ -4,6 +4,7 @@ log = logging.getLogger()
 import requests
 import yaml
 import os
+import json
 dirname = os.path.dirname(__file__)
 
 API_CALLS = yaml.load(open(os.path.join(dirname, "api_calls.yaml"),"r"))
@@ -26,12 +27,16 @@ class EntityMixin(object):
         return [entity_class(self, e) for e in ents]
 
 class GenerateTokenMixin(object):
-    def get_token(self, access_level, identities = ""):
-        cll = get_api_call("get_report_token", self.wks_id)
+    def _get_token(self, api_call,  access_level = "View",  identities = ""):
+        cll = get_api_call(api_call, self.wks_id)
         if identities != "": identities = ', "identities": ' + identities
+        headers = {'Authorization': 'Bearer ' + self._pbi._aad_token}
+        headers.update( {'Content-type': 'application/json'})
+
         data = '{{"accessLevel": "{}" {} }} '.format(access_level, identities)
-        token = self._pbi._request(cll.format(**vars(self)), data = data)
-        return token
+        resp = requests.post(cll.format(**vars(self)), data = data, headers = headers)
+
+        return json.loads(resp.text)["token"]
 
 class Workspace(EntityMixin):
     def __init__(self, pbi, wks_id = None, wks_name = "", isReadOnly = False):
@@ -90,7 +95,8 @@ class Dashboard(EntityMixin, GenerateTokenMixin):
     def __repr__(self):
         log.debug(vars(self))
         return "Report ID: %s Name: %s" % (self.dashboard_id, self.dashboard_name)
-
+    def get_token(self,  access_level = "View",  identities = ""):
+        return self._get_token("get_dashboard_token", access_level, identities)
 
 class Report(EntityMixin, GenerateTokenMixin):
     def __init__(self, wks, report):
@@ -108,6 +114,8 @@ class Report(EntityMixin, GenerateTokenMixin):
     def __repr__(self):
         log.debug(vars(self))
         return "Report ID: %s Name: %s" % (self.report_id, self.report_name)
+    def get_token(self,  access_level = "View",  identities = ""):
+        return self._get_token("get_report_token", access_level, identities)
 
 class Dataset(EntityMixin):
     def __init__(self, wks, ds):
