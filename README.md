@@ -12,11 +12,8 @@ Pull requests are welcome.
 
 ## Usage
 
-for usage see [Usage.html][2]
-
-or [Usage.ipynb][3]
+for usage see [Usage.ipynb][2]
 
 [1]: https://msdn.microsoft.com/en-us/library/mt147898.aspx
-[2]: Usage.html
-[3]: Usage.ipynb
+[2]: Usage.ipynb
 
