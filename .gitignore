@@ -5,4 +5,6 @@ __pycache__/
 # If you have a Mac you know this
 .DS_Store
 #ignore config files
-config.yam
+.ipynb_checkpoints
+.vscode
+.pypirc

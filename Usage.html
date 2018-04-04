@@ -11778,8 +11778,9 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">user_name</span> <span class="o">=</span> <span class="s2">&quot;your powerbi password&quot;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;your powerbi user&quot;</span>
+<span class="n">client_id</span> <span class="o">=</span> <span class="s2">&quot;AD app client id&quot;</span>
 </pre></div>
 
 </div>
@@ -11789,22 +11790,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">user_name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="n">client_id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pypbi.core</span> <span class="k">import</span> <span class="n">PowerBI</span>
@@ -11818,7 +11804,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">PowerBI</span><span class="p">(</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">client_id</span><span class="p">)</span>
@@ -11829,10 +11815,28 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[2018-04-04 17:28:43,982] {log.info:103 INFO} - f23ea3f4-16cd-4bfb-947e-895a77b9be79 - TokenRequest:Acquiring token with username password.
+[2018-04-04 17:28:44,299] {log.info:103 INFO} - f23ea3f4-16cd-4bfb-947e-895a77b9be79 - UserRealm:User Realm Discovery Server returned this correlation_id: f23ea3f4-16cd-4bfb-947e-895a77b9be79
+[2018-04-04 17:28:44,770] {log.info:103 INFO} - f23ea3f4-16cd-4bfb-947e-895a77b9be79 - OAuth2Client:Get Token Server returned this correlation_id: f23ea3f4-16cd-4bfb-947e-895a77b9be79
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wks</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_workspaces</span><span class="p">()</span>
@@ -11848,7 +11852,7 @@ div#notebook {
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[5]:</div>
+<div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -11866,11 +11870,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="n">wks</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">get_datasets</span><span class="p">()</span>
-<span class="n">datasets</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wks</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">get_reports</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -11882,15 +11885,16 @@ div#notebook {
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[6]:</div>
+<div class="prompt output_prompt">Out[13]:</div>
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[Dataset ID: e6262d39-920b-4307-8d6c-37209a817413 Name: cosmosdb_dash,
- Dataset ID: a69408d7-e1fc-4ffd-857a-37cb25f2fe81 Name: Dashboard Usage Metrics Model,
- Dataset ID: 89230206-d927-4da7-9252-9efa1b03486b Name: dataset-audience-analysis,
- Dataset ID: 27cceec5-2da2-4cba-ba1a-f53b4603b376 Name: Procurement Analysis Sample]</pre>
+<pre>[Report ID: 0d0b633a-1ff0-47cd-9001-6eb4ee648f6c Name: cosmosdb_dash,
+ Report ID: c2f1bdb9-afd3-43f3-b1a3-98a9d20017f0 Name: Audience Analytics report,
+ Report ID: a05296d9-759f-4439-99fe-44d38b46b94a Name: Audience Analytics tiles,
+ Report ID: 40dbb274-778b-4fae-9704-968452c34b2a Name: Dashboard Usage Metrics Report,
+ Report ID: 9823b019-8db2-4760-90da-4e4cdffb1a9d Name: filtered_report]</pre>
 </div>
 
 </div>
@@ -11904,8 +11908,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tables</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">get_tables</span><span class="p">()</span>
-<span class="n">tables</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rep</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_report_by_id</span><span class="p">(</span><span class="s2">&quot;a05296d9-759f-4439-99fe-44d38b46b94a&quot;</span><span class="p">)</span>
+<span class="n">rep</span>
 </pre></div>
 
 </div>
@@ -11922,7 +11926,7 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[Table: table-audience-analysis]</pre>
+<pre>Report ID: a05296d9-759f-4439-99fe-44d38b46b94a Name: Audience Analytics tiles</pre>
 </div>
 
 </div>
@@ -11936,20 +11940,170 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delete_rows</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rep</span>  <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_report_by_name</span><span class="p">(</span><span class="s2">&quot;Audience Analytics tiles&quot;</span><span class="p">)</span>
+<span class="n">rep</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[8]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Report ID: a05296d9-759f-4439-99fe-44d38b46b94a Name: Audience Analytics tiles</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tables</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">get_tables</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rep</span><span class="o">.</span><span class="n">get_token</span><span class="p">(</span><span class="s2">&quot;View&quot;</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;H4sIAAAAAAAEACWWxQ40yRGE3-W_tqVmsrSHZmacvk0zM6_87p61zxVSVUV-mZF__7G_Tz998z___pPgbyyMwjaJGbYHO1_6qwBF2ztBHw2RhOStET2hIahAmIbe8daI5gFnNz04UJUbCggxOP5zh0Rn4UJ4VIibm9yzCeSiVHnXpRxneTESq1BEqRBguWTmYWVkszHhmyUOWb2XBGpYBKfu2iSUxThORKQ_TKMgWlDJ01VuEstJ-i0v08KYHm79Mc6Xj9Mb1OjBTReZDu3w9Ue2Eg9iMUZHyCZq_e5l4V-mHDz-F6vA5n7bD1WXtweZ-JYImDnaRW00D2L6mEzRuoQ7oeF848o7kO2WI98_JSayGNQcTS6Xt5cAqi1TyfLJLbrO0vkSFUsxkiFuDS_camDBe6TpnwSZlaoiU_UmrwmSGRbJNeyt4frtWaEjUbLXagwpO3shpI9meyhBzdHOP2iBF3k8KCDLMCLVeOZqcSZRkMf3Js7U0TpKRQhLn85WfAHWfEbh22oSqKCWNqiv-urJ0bWfEOKXAJ88s46jh0OQrp1411SlLr0NoT07XkJ3DB5fwUs5c-5LEKs1lmXjMYElrpd0JpLFPiSR1aWg9aoKmzHrs1PutToo-xVRm0EZcT8JJscDXpyUtVyZvXAMQDWEeFsFonYur6JR6lZs7Dnq7GDW5R6UwgOVF5tZwmdtbGljfI8gqh_9yc0LXTLTz0SvI7LBRy8JtQ1bmDEwFc6p5JCpHe1F7uRWBwSyWAhuUkLbQfIuOsl5MpadP0AfHJD4RHZ-P7cxfPkYmoHYvKWVBn0DOaiMfqN23-V3t-ivtZW5rzHVcb6qWwK5PXsf9CuyBBRaguFWZYbcwS25CnTuRTZ4cvo5w348Bdb3PyJQuxe4sOZGrKAFLY_4AcUvFAdbtffc8g7nLFS1Fh3hzYZBq-QQGRNSSTv6UcjF5wkoE8U6H2eRj92XJwrPckBmi4tY0Z3v-axu44aEhRtDHhrvoBSBzdJ61vt2FZqELv2t8obOBjG4KmRFB_5pUSTcl8mFnhglP4TyAdIup9OzPsmtOAQQYFCR4Fnz0vXrAfKLUgyq8KgR1eNMvpg9TbVC_q5YB9Jry79cXk3bN1invuDglROhAW1qVS1s7XufVHXUE28S8plSn7TAkO56papsmSuhPl8GCYmAV0WrSnhNtfu1L0rD35egyS6PADXkUzINngQXzsKZzJ3iCaDrpm_xRCKiR4Gk_-GJN0ttjW7LOsZPJQgd6qDpfPKPXcexssEisIXXdYHviE8IEy6VI7pCofi6uUaPatqRCRJGdweq6fIUTCq5PMDlvZlsXT9Ui3B0s5dJwo6pcYiVZRxxJoC5Zslo31xr2TUXlvnOzFLO1WVhW2BnMraDjiWQ-3uG5dtbdj6H3HMppYJXy2kP5uoA8wI7op0B9OxD1PtO2zDcuegKnuViEudhmMvejaAsPr8uUDkWhoxBIBRF5tO5C9HOZLeANbPReBwFAFhmkniFC_pS00_eDW2tMqrBInyjO7Rxk3nyyiw_AzRocl9PRHvqh7Euwu_1FTEKZRJhZmiwY95N3d6iuRw99BPkwg_qcp1Rl5cZa4sgow5JencQ7TpEKiZGDfP8V1qY0ZT3Lbf2WKpP2B7O0ydr0taSYHKhhM4ZpmI5rY7ulVpJe5GZaDiG5bRUgQr51eaoxYU10p4rMCQjDhet8-PUoHZGSAq_THf6DaYoJTfMP4A5tLnKQi4PkKDTMDe3E6vPcKYtkeQCF8zrMb_jtWJqfdAy-X3aU7gdx0WFgWqzFU1vTUa0rdS9jLnkg25dO3Hy3b35tRdU_iBVFdMj1ncqBc6A9SQi705nw2sHMre6LUDFQuB-oQC--beYaqNi_dYwKY7-NXUKAWntu3ItbG8HIV3C03bYRUgGac9aU98XsR2lecnH9oja1jDuAq2wFWPjMzcqrNuB6YUq9aa54mYscq9123g3ElSYzwwRuOZh_eTLheMzzV_Q5VZUBR5OAUye14KYs24qWVevahu-9tH5SRA9j4fhQNvfPA2v83ghuPL0bW9_jwGeOt4K4RqoscrBcJJQDFdfwG1Rs1XTBkEuAMtrlOWr4ptJHwKQAyrgXRIFK1rl8XPZxrH09NQvKXP5LgRFr4B5rLE2JFAPgllaY1Cu5Eo4j72T9-E-VVX_7WWlOys7pE5peOKEmwRT8pDnlzg7BQFjkKLMX3_9-dcfbn3mfdKK57dmhBUqRT5_y8atu6dpIMUXLgiqU3HdAsDIBkLeepPepWYWKYW-lWPNUN21YNebgL0-uAi2sNoyhBgoM5MkS81xUYPw9uYNjK_GFleq3LhfCcOH8J-0PEx0G61cb3zHb8J7RoqVdhvE84TCYfYk_8WO6okr5-fB_EFDBfVMCMp3nJn3HyY5nFiBosEkODsbgFYLkC5LU854MkxUbZkBGQ_Fb1gXW3_u4_WKPTPC8cqEYBRO4DBaZkR6mE6C9Uc6k4Cj800RCsD8bsZi1dCi2373ZUPNAicysvKv0HuWsi6dCf88Q-5j3aLmpo2qfaZD1PGYeb4rHZ9nc0jdN7cI1bUK1Bmq_9v8zHWxKuE_LhMKBLzkHPw40_zmgA68kZz_qbymGr_7sRY_mb2REjOwZ8A0-XQMTYFnfGIJoTgnDtK3MJQokMedESz7iex7uoSBP2ElXIxszd1c_oajNfeJZ3LxItxYvp10y1Mx760C7zTBdvsaiwr_LEp1aY7rwgN7A1KXfOt2vhzddaXR8Y1r0yMCzyVLf7YsddtpA8yKXbuCIkN16oL93xqAngywxQo6hmP4MQVzanD7YkMR-Z3gxeoBFNQ8M6UQHFSzwo0YtZEylFJIaN_uc6rVrcQ5jEjPj2a4QfzO3CDb-qVkFRpo0UXtytxe3_ejdlByf0pMkond1dfxgN9Nf4RQal-ioLroKMFiLDkg66-zmZLthUOeb3bShtkpLHHOY6d_mP_PfwEtdZm8WgsAAA==&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">wks</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">get_dashboards</span><span class="p">()</span>
+<span class="n">db</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[7]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[Report ID: 1a2de85f-2106-4fa2-bda5-99ef50bee86b Name: Audience Dashboard,
+ Report ID: c5558acb-984a-4ed1-b37a-d9808feea1cb Name: Audience tiles]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_token</span><span class="p">(</span><span class="s2">&quot;View&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[8]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;H4sIAAAAAAAEACWWxw60CA6E3-W_MhI5jTQHcs6ZGzSZJmdW--7bq7nbB1e5Pvs_f-zs-U5Z8efvP1VQ3d7X3thpBZ_Kt3rSyYsZnT8Pc28GCDY1TnyFtcFi-AMnhdGH3LtqnTHGp3ii71Fk9-Jb_sw3x7x7KwEvBWeAPhjzi1uBM3io_jp6yroGfrgno3tESR9TANoWYR6rMfDx3GFBI4XPP0iHERNAYVI8qbeDJd9FM5BPsO4BsKCnDr6JPY9Izp4VFjftDEgKxacTmD65dxNy25h7QNgR_33OgWxLYr1VUkWFQCUqnRjij0k5E9xJtyDHWMnPj54shbXsnUFGW80h-N7c3_Cy33TLyaoS2PI3YXJNN1sG7rqvmzaRQ9Td874LrQNt2CtkuoUhhnekwYuIz6FY-SludUKynwtMVw7ahXgCN8JWNOZRPlLwBEX1MWGAkl-k8jNQ3TwDeiqrHUTL6IqZ8pKsU5b9OV-CPS8QoHKRtVZJ6pCBtFN2ahNF26EtnF0_Qy7ZA_Zp1nkTMZ6Ln8p3s3zwwrQXRCaA0ZcxQZ_xxTJklTSJBkPKHAcyG7_vQeF698xvRCBzZk3D8wEmRHdh5bgliZiwhQ3V12oG0f4MdxNQQ6bb0DcfU7QtU0pH4ZewE-6qiTFmXObF7_jUmpAbnCBoN-PodCrARUhe53d0TDGCEmlK2bGZR6z_biHVA4AvNWwJm1E2FHr7ln46zqUPkOlSN5Q7qBXN5V3yKI7N4t8zP-8NbOBomMsQe97Rqmj4ijWHN_YjdYMGd-vg0y3Vh8fy38I6kCEVv6UI5f0R_BjtFmxoeTgbRU_nXP016se7cPWMNWPP6FX9NSbRqTzzFt4IdDPmK1Edn6hLO-YBHkGADzQV1Sk8jK4neOBR4zyFjzhlrA3wYu9jl-2Gc0Wqnh41bexhBh_cAg2B814jD-uiXRUhAGYeNV2SsHzV1yVt4Vvdw7if_aAilTZNNTkO3xV5N11NYH-N3pQTBOwb1aOyAqhKmztohnHIlYgui5Zu5jIggooknkPssgecTOfeeUwmiGfGsDcGpDG-K9kiGsG2DQgQEJi9n7qj0rYQvx_0pihSwJXImm6UAGYB9UIkhVYozcvKXx3ThdPTJ6FM69Bn6AtBmKtpHpnhad2hjjc71q5E4qOnYyuJl0YM6uNKEkMQes5tAvynUihhBeglUeN5LXiXzFJfayiM1_ZsW8ZrTjIr0VzMZQvgoHRO_g7gVhEVrspTJ3ZoI9lKR-VvFdZqheCQ079Oy0KJBufIa4d5ORXlTjzqLx5uI4wROCtVAfqRKVPOjQDJHSpOiAJvvvSqjCd3NrtkC-6xjPT8pj4BuTb2CJwMpBzoWMHOywujmRsd0LaZkOQPAFrHXR5YS7WSd0Riee8FBeY87vRJ4HmnaVgGN_p6SFGY-sv6p_dOpP_kwIGIZEAAaRhfRe54QlPXCb0wm6bwjjwo8Fa10zrX9F5BYCnP2Bhe88GdhOGkJvcuSl0xE-97-zD-MJLB8vIuZvGoD1uhC4ELaIPJfC7EBCkRTLsw8CWJOthBDh-dRcna22seZCGZKlTPPzlVlHIKhNSijvKTEp7JG7QlSgXncnNU6BLLnlGd13VrxYrGHRi5fpdXwPG-Gkx20yPS6ASiL0hiolN892N_YlGCUgBYKxsuzpQDLyeGAHS7CSgm2C5ZGy7V_JLJC7Qz3hLm2_LIUuy8i0A96R1DDq3HU06SH9pN5QUuDihexNP5kc5bb1wfzv2Iaoo_26KINDa6wwFvkSooSBhmVyKOgh9L0G9D8lnPXkdugD_2CUrirZgxClT5AAYDdjTCOiMbp9iB0RZ2RWko3hW2V_LATcLrTcnHwIn-e2Fmp6FrqFr4slzY5rvhApDIlyW5i16Lae7eFBhTxWKhCpv5jU-OGjMhyMfsZ5OhhlIOU_Oojsit84JFOn-GCtj44CbBbpWEgRwy-p5pGBAdcg595Cu3vrDoaX1Ts8lwPoC5kDQ6WKE-5chX5QP-FDGUCDSkK38ChpXNtiEwVpwN_mbRU6LLsx4UuVIsn2R0fuXyncgalqBZu0uGIr4B7-iK5QkuLGpQ2MZNCmTwJe-FKwG0-uTdVaqFI5D9ndtIXnb4Cv0ChhCXdSPywWrTbV2cPY1-JVjEfVlRqPITyPIBkuidvL0BtCwjHACTtsgTMgqGu3hcbN2DcFX8iWciuIdvQYDnoQbzYucfTn4SNRr6zxo6iXeD39fUzMvNqu7siYTpDPE9TW03MSHN3q_Rfxx-NoPSSph__vnz1x9ufeZ90srn96aY7CVZfS05qbdJmcy4spFlOMT9lKVSGIqoVSYeASWNqrg9zK8okObsfgKyClm_lFKcxOWhIt1S3FGJadczcYpM2WQQORdWNflYl9biIjoesuj1VGIzOHEUuY4_1XR4r4F3gT9Kt-mgcU9-dJpbRPiUvwtneEysiJPZBDVVq4II-v1rlXTdMcwnHHbG22YXG8J9FGl18lBZOrQ1IouubE_-wMHdA5ycfQgT6YH1thZk5MWb9glRZcWL_XzOBQaGELjzsF8i5ce83Ld-Z9BWjl8YNGb9oT2vNK3TnauagAKOFbXVbY8pp5lhS0oeFZcIBII1b0EpyfwCj1LZ92LB9U9kmte_Mj9zU65K-FN5fqHZhWghJOsTEXyC6Z1w_dcMr63HbD_W8lemOI-hqJmFpCz2ewz8h9QJkQPmo5zjAT62_Rg8XDcLJ7Cos4WuSfPZfiWOJz6K-jN17sIrE1Ri8eRFckRUhWGIjZ0qEiSgCqjUCOuxJjwwzO-sVpzASLQO6wfvxd4Itq9Zu9qzO0Z1j14TOdiAY4y1a3r28AGlUKAPczuOenB3XURhzWwp8xPGsByYBgLHdptutQ09rT3qede926s4bclyreVX5eNDD5OyqJejiXiX-hnXoxE9WXNJnrX4VDuHUmq6Ik8dQtIeax_f1A0oszGsxR4JCsKHNqkHBVYjXQPZwck1volm1ahIfj4649nuwCcOyxTz-WU_W1QuMigYofg5hun_Zvz3f6hDdFiaCwAA&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="n">wks</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">get_datasets</span><span class="p">()</span>
+<span class="n">datasets</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[Dataset ID: e6262d39-920b-4307-8d6c-37209a817413 Name: cosmosdb_dash,
+ Dataset ID: a69408d7-e1fc-4ffd-857a-37cb25f2fe81 Name: Dashboard Usage Metrics Model,
+ Dataset ID: 5f9b6937-5d00-47bd-9854-4ee648b9f856 Name: dataset-aa-sessions,
+ Dataset ID: 89230206-d927-4da7-9252-9efa1b03486b Name: dataset-audience-analysis,
+ Dataset ID: 27cceec5-2da2-4cba-ba1a-f53b4603b376 Name: Procurement Analysis Sample]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tables</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">get_tables</span><span class="p">()</span>
 <span class="n">tables</span>
 </pre></div>
 
@@ -11962,21 +12116,12 @@ div#notebook {
 
 
 <div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Non-push datasets do not support table API
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt output_prompt">Out[9]:</div>
+<div class="prompt output_prompt">Out[11]:</div>
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[]</pre>
+<pre>[Table: table-aa-sessions]</pre>
 </div>
 
 </div>
@@ -11987,62 +12132,13 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">C</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">wks</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;27cceec5-2da2-4cba-ba1a-f53b4603b376&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delete_rows</span><span class="p">()</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt output_prompt">Out[15]:</div>
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Dataset ID: 27cceec5-2da2-4cba-ba1a-f53b4603b376 Name: Procurement Analysis Sample</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wks</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">get_dataset_by_id</span><span class="p">(</span><span class="s2">&quot;27cceec5-2da2-4cba-ba1a-f53b4603b376&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt output_prompt">Out[16]:</div>
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Dataset ID: 27cceec5-2da2-4cba-ba1a-f53b4603b376 Name: Procurement Analysis Sample</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
