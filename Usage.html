@@ -11775,12 +11775,12 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">user_name</span> <span class="o">=</span> <span class="s2">&quot;your powerbi password&quot;</span>
-<span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;your powerbi user&quot;</span>
-<span class="n">client_id</span> <span class="o">=</span> <span class="s2">&quot;AD app client id&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">user_name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">client_id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 </pre></div>
 
 </div>
@@ -11823,11 +11823,50 @@ div#notebook {
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[2018-04-04 17:28:43,982] {log.info:103 INFO} - f23ea3f4-16cd-4bfb-947e-895a77b9be79 - TokenRequest:Acquiring token with username password.
-[2018-04-04 17:28:44,299] {log.info:103 INFO} - f23ea3f4-16cd-4bfb-947e-895a77b9be79 - UserRealm:User Realm Discovery Server returned this correlation_id: f23ea3f4-16cd-4bfb-947e-895a77b9be79
-[2018-04-04 17:28:44,770] {log.info:103 INFO} - f23ea3f4-16cd-4bfb-947e-895a77b9be79 - OAuth2Client:Get Token Server returned this correlation_id: f23ea3f4-16cd-4bfb-947e-895a77b9be79
+<pre>[2018-04-09 19:38:01,256] {log.info:103 INFO} - de317076-d3c4-4197-9c45-3d2c659043f7 - TokenRequest:Acquiring token with username password.
+[2018-04-09 19:38:01,551] {log.info:103 INFO} - de317076-d3c4-4197-9c45-3d2c659043f7 - UserRealm:User Realm Discovery Server returned this correlation_id: de317076-d3c4-4197-9c45-3d2c659043f7
+[2018-04-09 19:38:02,118] {log.info:103 INFO} - de317076-d3c4-4197-9c45-3d2c659043f7 - OAuth2Client:Get Token Server returned this correlation_id: de317076-d3c4-4197-9c45-3d2c659043f7
 </pre>
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">C</span><span class="o">.</span><span class="n">API_CALLS</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[9]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;delete_table_rows&#39;: &#39;datasets/{ds_id}/tables/{tbl_name}/rows&#39;,
+ &#39;get_dashboard_token&#39;: &#39;dashboard/{dashboard_id}/GenerateToken&#39;,
+ &#39;get_dashboards&#39;: &#39;dashboards&#39;,
+ &#39;get_dataset_by_id&#39;: &#39;datasets/{ds_id}&#39;,
+ &#39;get_datasets&#39;: &#39;datasets&#39;,
+ &#39;get_groups&#39;: &#39;groups&#39;,
+ &#39;get_report_token&#39;: &#39;reports/{report_id}/GenerateToken&#39;,
+ &#39;get_reports&#39;: &#39;reports&#39;,
+ &#39;get_tables&#39;: &#39;datasets/{ds_id}/tables&#39;}</pre>
+</div>
+
 </div>
 
 </div>
@@ -12021,12 +12060,25 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[Report ID: 1a2de85f-2106-4fa2-bda5-99ef50bee86b Name: Audience Dashboard,
- Report ID: c5558acb-984a-4ed1-b37a-d9808feea1cb Name: Audience tiles]</pre>
+<pre>[Dashboard ID: 1a2de85f-2106-4fa2-bda5-99ef50bee86b Name: Audience Dashboard,
+ Dashboard ID: c5558acb-984a-4ed1-b37a-d9808feea1cb Name: Audience tiles]</pre>
 </div>
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">log</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</pre></div>
+
+</div>
 </div>
 </div>
 
@@ -12053,7 +12105,361 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;H4sIAAAAAAAEACWWxw60CA6E3-W_MhI5jTQHcs6ZGzSZJmdW--7bq7nbB1e5Pvs_f-zs-U5Z8efvP1VQ3d7X3thpBZ_Kt3rSyYsZnT8Pc28GCDY1TnyFtcFi-AMnhdGH3LtqnTHGp3ii71Fk9-Jb_sw3x7x7KwEvBWeAPhjzi1uBM3io_jp6yroGfrgno3tESR9TANoWYR6rMfDx3GFBI4XPP0iHERNAYVI8qbeDJd9FM5BPsO4BsKCnDr6JPY9Izp4VFjftDEgKxacTmD65dxNy25h7QNgR_33OgWxLYr1VUkWFQCUqnRjij0k5E9xJtyDHWMnPj54shbXsnUFGW80h-N7c3_Cy33TLyaoS2PI3YXJNN1sG7rqvmzaRQ9Td874LrQNt2CtkuoUhhnekwYuIz6FY-SludUKynwtMVw7ahXgCN8JWNOZRPlLwBEX1MWGAkl-k8jNQ3TwDeiqrHUTL6IqZ8pKsU5b9OV-CPS8QoHKRtVZJ6pCBtFN2ahNF26EtnF0_Qy7ZA_Zp1nkTMZ6Ln8p3s3zwwrQXRCaA0ZcxQZ_xxTJklTSJBkPKHAcyG7_vQeF698xvRCBzZk3D8wEmRHdh5bgliZiwhQ3V12oG0f4MdxNQQ6bb0DcfU7QtU0pH4ZewE-6qiTFmXObF7_jUmpAbnCBoN-PodCrARUhe53d0TDGCEmlK2bGZR6z_biHVA4AvNWwJm1E2FHr7ln46zqUPkOlSN5Q7qBXN5V3yKI7N4t8zP-8NbOBomMsQe97Rqmj4ijWHN_YjdYMGd-vg0y3Vh8fy38I6kCEVv6UI5f0R_BjtFmxoeTgbRU_nXP016se7cPWMNWPP6FX9NSbRqTzzFt4IdDPmK1Edn6hLO-YBHkGADzQV1Sk8jK4neOBR4zyFjzhlrA3wYu9jl-2Gc0Wqnh41bexhBh_cAg2B814jD-uiXRUhAGYeNV2SsHzV1yVt4Vvdw7if_aAilTZNNTkO3xV5N11NYH-N3pQTBOwb1aOyAqhKmztohnHIlYgui5Zu5jIggooknkPssgecTOfeeUwmiGfGsDcGpDG-K9kiGsG2DQgQEJi9n7qj0rYQvx_0pihSwJXImm6UAGYB9UIkhVYozcvKXx3ThdPTJ6FM69Bn6AtBmKtpHpnhad2hjjc71q5E4qOnYyuJl0YM6uNKEkMQes5tAvynUihhBeglUeN5LXiXzFJfayiM1_ZsW8ZrTjIr0VzMZQvgoHRO_g7gVhEVrspTJ3ZoI9lKR-VvFdZqheCQ079Oy0KJBufIa4d5ORXlTjzqLx5uI4wROCtVAfqRKVPOjQDJHSpOiAJvvvSqjCd3NrtkC-6xjPT8pj4BuTb2CJwMpBzoWMHOywujmRsd0LaZkOQPAFrHXR5YS7WSd0Riee8FBeY87vRJ4HmnaVgGN_p6SFGY-sv6p_dOpP_kwIGIZEAAaRhfRe54QlPXCb0wm6bwjjwo8Fa10zrX9F5BYCnP2Bhe88GdhOGkJvcuSl0xE-97-zD-MJLB8vIuZvGoD1uhC4ELaIPJfC7EBCkRTLsw8CWJOthBDh-dRcna22seZCGZKlTPPzlVlHIKhNSijvKTEp7JG7QlSgXncnNU6BLLnlGd13VrxYrGHRi5fpdXwPG-Gkx20yPS6ASiL0hiolN892N_YlGCUgBYKxsuzpQDLyeGAHS7CSgm2C5ZGy7V_JLJC7Qz3hLm2_LIUuy8i0A96R1DDq3HU06SH9pN5QUuDihexNP5kc5bb1wfzv2Iaoo_26KINDa6wwFvkSooSBhmVyKOgh9L0G9D8lnPXkdugD_2CUrirZgxClT5AAYDdjTCOiMbp9iB0RZ2RWko3hW2V_LATcLrTcnHwIn-e2Fmp6FrqFr4slzY5rvhApDIlyW5i16Lae7eFBhTxWKhCpv5jU-OGjMhyMfsZ5OhhlIOU_Oojsit84JFOn-GCtj44CbBbpWEgRwy-p5pGBAdcg595Cu3vrDoaX1Ts8lwPoC5kDQ6WKE-5chX5QP-FDGUCDSkK38ChpXNtiEwVpwN_mbRU6LLsx4UuVIsn2R0fuXyncgalqBZu0uGIr4B7-iK5QkuLGpQ2MZNCmTwJe-FKwG0-uTdVaqFI5D9ndtIXnb4Cv0ChhCXdSPywWrTbV2cPY1-JVjEfVlRqPITyPIBkuidvL0BtCwjHACTtsgTMgqGu3hcbN2DcFX8iWciuIdvQYDnoQbzYucfTn4SNRr6zxo6iXeD39fUzMvNqu7siYTpDPE9TW03MSHN3q_Rfxx-NoPSSph__vnz1x9ufeZ90srn96aY7CVZfS05qbdJmcy4spFlOMT9lKVSGIqoVSYeASWNqrg9zK8okObsfgKyClm_lFKcxOWhIt1S3FGJadczcYpM2WQQORdWNflYl9biIjoesuj1VGIzOHEUuY4_1XR4r4F3gT9Kt-mgcU9-dJpbRPiUvwtneEysiJPZBDVVq4II-v1rlXTdMcwnHHbG22YXG8J9FGl18lBZOrQ1IouubE_-wMHdA5ycfQgT6YH1thZk5MWb9glRZcWL_XzOBQaGELjzsF8i5ce83Ld-Z9BWjl8YNGb9oT2vNK3TnauagAKOFbXVbY8pp5lhS0oeFZcIBII1b0EpyfwCj1LZ92LB9U9kmte_Mj9zU65K-FN5fqHZhWghJOsTEXyC6Z1w_dcMr63HbD_W8lemOI-hqJmFpCz2ewz8h9QJkQPmo5zjAT62_Rg8XDcLJ7Cos4WuSfPZfiWOJz6K-jN17sIrE1Ri8eRFckRUhWGIjZ0qEiSgCqjUCOuxJjwwzO-sVpzASLQO6wfvxd4Itq9Zu9qzO0Z1j14TOdiAY4y1a3r28AGlUKAPczuOenB3XURhzWwp8xPGsByYBgLHdptutQ09rT3qede926s4bclyreVX5eNDD5OyqJejiXiX-hnXoxE9WXNJnrX4VDuHUmq6Ik8dQtIeax_f1A0oszGsxR4JCsKHNqkHBVYjXQPZwck1volm1ahIfj4649nuwCcOyxTz-WU_W1QuMigYofg5hun_Zvz3f6hDdFiaCwAA&#39;</pre>
+<pre>&#39;H4sIAAAAAAAEACVWx86FanJ8l7vFEumQLM2CnOGQw46c8wccsPzu_j2zr5a6SxX6f_75Zs-4ZOU___3PYvQ0VjYoBjux1oqhIrg22E9Vq3llfD-iKZ6m4HMBhCnNfXjf5ezi-qtHzBMy--Th3ubIM4_vSAeRDCFc4WXNoRfvZUiqTFuSGv_bvb7GWizQURmCCtDV5wcu6YZQ2AM7ljdqZgooJTr0h_-rzX3EG5ZwV9VOf_cyxyI1hS5D0xT8kgh_emybbPDgYYfumOxxRfcLQuhZpnorSjNwi6zg31c5qpJJEuOI4uPUelggOob1Asz9tL0ENEjXOpQZhEdE_Nz5lZQqrCQQSkaoD742AmcyldntJebsB3yGCAJ4h1dDBqM6WvFO39CxULkoX5l6Qpl3tESBtoYRGb1WeP-3y27Wyj7D1KsHkpvS0R-i0eunnZcjVSRGj6S1RYXINbCB-9YxM9rKZgmnL1AZxT2yrWONSobQKePP9u1eMqG5aJ0wGpbKT1WoNYSgbvrVPmiJ8tKbvvSaaO4bdVPZTcPynJQnLzKE473SqbXyA1iLDrLxkgwV3_Pfdvihig0SflJHYB-H-7DTKsYHzd0EF5uwhWIK1BeFUZ3FaGgVI5ImkogZZwNHTNN5ri93JtXLsS7hq842w7XF1uOB-NElVcMFSnr47N3IPSBBj0t98ULzE-QTl3tDaRigRr3JOoWXotDFGB3aj7vcqpmtgG9RTVLtd7yZ9uq-HmfxRBVRMdQDMtZDqFwZL4Ld0thfEJLieQTwnII9uPEuoDfqAeBxnOV8KKDi2fRSBI1kI4fErhO7Zy5_nrvgcnz8fK8vsnyi-yNccFBWCrboFFrifrYmNhUUN78Isy3nDFMk-skqRpF-9jgelKjgBk7Zvye1bG4daWotR6kod71q06sFhMT5svtX76OEz2d6Zs0JROHyRGVzwbuXt0oqsya0HlsWrwXPJYD8E6rrSvVDGDKWJepv39FD3qx69hHGcifMC74qtOgLV6bvL4qj9RFu6NfOZcj1_WIN2Vuo3qebdXBZt2BzkKIYfZdlhfWBp2-tKZ22Cdj9TYmrGdPlVLxpBW8yPVpewZjmQlxDPrVdvki8FNUs0bnAm6a7LgPCr2zG8dUTbGF8Nq6qKEsp7iiCToyicdmh2N1lCqluXOrAR46TXhLkw3RBqvb2CRaKH4x2S1X1c8nmBv9-icqjzzQaap83CXKA3kcdwh1QnRTBgEdg8rKFAtDfPN6-k1s_A1_VeqNqzssC3iLK8MylXw1fkufLpg-DT5gTL2Z_wQw8o-Nj5Tm3HLsyWlznLz0QkM31C7hk9eAjrYzTTa5vx2K_mE0JYevs09nynOgT7AYhWKKgN5YWp_HuHmwwk2Wnt53vBUnBJosA0yGQbXaXHTmGcFW3AyXvbmZXAfvA6kfu8kG-RwKyUA-MTUCwb1O_v--ESlx1zpUQjIPLnZX2s91nYTFqq0JWmGoGHXbi9qXSprQZqtm-eJrJ1es3x8m9dfoupS1e2Gri-WqRx3ymDEnjcu38kEmEG9F7TC3s-_yFLdOjiHUq5NwmVv7nR8ukrkwiCUBlx9QZ_CKDI5qDkbR_CAvmRUQe5u1tJSkFbv9xhnwm7olXbav2HWVukWdm94iSONL_AK3P9onhBwLIGUsOb1GQ57Ig90_l7HTwD9hvAVuXmKjWigJY_jlPHIg6I7tCXna0OkclceLTb5Z8qEWUpjS1m9miWBLZ3XOzZsAWENBZT9vfEIQ-hyFEOF4u6ALdbrlA55TCehc-N98jwHdqvETUIvCigj333U5rYLR79dcvDJTcHFzqE80XOzNF4C-ss1c1PPPndkwKygJMzYgb_hZxfzPpOvkaXYVYrgYWXPMR3HS8URwG7uWFVvqjY6jVpl-g8O5RFpTHtrg9qAdvSJidxuufvzVXLYFHQyaPCNjj4YISlrSARmZvfF63cuhfYCYq1pjoqCFLyuMmIlXPrihdsA9d14IpFkQLUCZxvonShBxriXBHnIVkwY_-PU16LqfwuU8ZVBSCyBIH6Lb-OmyUn0WisCrXwyJqw_r7l3VyxQqcUyfDneadE-kJ-hmo1V5KHV05o1Hf86DXY9XN8akPBVliiQxUHIAacaO_boxKQ48BY_2CxGbqnf3Xv_75r3_4_VnBolfP35swq890bkbcc7S-Dlr0zBQp-MZMPvuANfm5Te-hErkS6W_G-WwPY-8l2Tu8QBd4e0WGpi2e9qpCbc0RWkb9gN8PE6Njen6WQDLcrXqTMOY_UPS-wYyB3hTx3wkj4PYFmcnv4xojPZJxINE_6qJrE83qT54xVsNJfMDNvpTMnVjEpkFKi-yDjmESvVIexoz2YVo0zV6Ud4nydjZQ1jyB7vnFc9nBY7qipuPdQGTj_pGa1EBwApIswY5Ls-_4A-jQlNaXdZLzjr94pahzj4DaQ5GBauHrWy6iNc9p9V3W4zQvWbico99uIjPxQ0lzXe-4-JH6iv3cvmn-cd_5smSGm3KUqvMfmp-1rXY1_GPZsMhArqg5Fe_wg2vySZxe2Pwb5XXNnIFzr_5g2QQa87CZbDHIWoOl4ByMz04xAp71NeUrfOF8F5ncxh0elZSWHdoc4fFbRbj6fVWDn5CQZCRgpxrGnD8rxiWkco3NTumPVonTEzaC6yu50mwgMBHK1vrHkIEG48NXSg4obQeZ3PFH4hNZr_H-NRsSt_OD0VJi-BQixOXggYxq707SmzmG-emiF0W5Z7XHnKflCLlLO5bSX-w5saXkZL8FRbcahDXkeSmtusQEGxqisKgIA1FXUJl6hKP0FXivM2qtYhAdmtEsiZgDlJytpya1v5YMPEgtwoqBaEqL9j_vJ4mosuFzZRcC9YnqQa8FhxjL-8QU7Ifj0zXWBGHrBlFFdf7_0_y__wcYx9MJGgsAAA==&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_embedUrl</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=f11718c6-8542-4286-bd73-a7cb0e7baed4&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tiles</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_tiles</span><span class="p">()</span>
+<span class="n">tiles</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[21]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[Tile ID: f11718c6-8542-4286-bd73-a7cb0e7baed4 Name: Number of cameras,
+ Tile ID: 6b5e8397-80a6-42bd-9024-cbbe67cb111d Name: Males,
+ Tile ID: 7547e595-424d-4284-82fc-7a2617dbeefa Name: Females,
+ Tile ID: df5202f2-5a6d-46c9-b383-cfa7ee23fc09 Name: Smile level,
+ Tile ID: 5ec010da-5c23-404b-ac58-97fab29c5c50 Name: Gender Demographics,
+ Tile ID: 88874fce-8317-45f8-898d-7382e2b4cb4d Name: Latest Reading,
+ Tile ID: 9d4bec8b-7dca-4950-a528-b5613c563708 Name: Anger level,
+ Tile ID: 84482a58-045b-43ec-98a8-d44c4c8ce5e1 Name: Emotions,
+ Tile ID: 1d8f72bd-42ad-4d74-95ae-8ed2eb23a2dd Name: People count, Camera count,
+ Tile ID: 0ccbf9cc-7ee5-49db-9faa-f1ce2c9a969f Name: Average age by time,
+ Tile ID: 40e0ced7-3a83-4249-95bd-424dace8727d Name: People by time,
+ Tile ID: 53319afc-b61e-4927-865b-fcaab72192a3 Name: People at the cameras now]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tiles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">colSpan</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[22]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tiles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reportId</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[23]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;a05296d9-759f-4439-99fe-44d38b46b94a&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tiles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">datasetId</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[24]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;89230206-d927-4da7-9252-9efa1b03486b&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;https://api.powerbi.com/v1.0/myorg/groups/4e4e4bd1-e7da-4a19-abad-0fecd51e9b20/dashboards/c5558acb-984a-4ed1-b37a-d9808feea1cb/tiles&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[2018-04-04 20:32:26,275] {core._request:38 DEBUG} - https://api.powerbi.com/v1.0/myorg/groups/4e4e4bd1-e7da-4a19-abad-0fecd51e9b20/dashboards/c5558acb-984a-4ed1-b37a-d9808feea1cb/tiles
+[2018-04-04 20:32:26,275] {core._request:38 DEBUG} - https://api.powerbi.com/v1.0/myorg/groups/4e4e4bd1-e7da-4a19-abad-0fecd51e9b20/dashboards/c5558acb-984a-4ed1-b37a-d9808feea1cb/tiles
+[2018-04-04 20:32:26,281] {connectionpool._new_conn:824 DEBUG} - Starting new HTTPS connection (1): api.powerbi.com
+[2018-04-04 20:32:26,281] {connectionpool._new_conn:824 DEBUG} - Starting new HTTPS connection (1): api.powerbi.com
+[2018-04-04 20:32:26,576] {connectionpool._make_request:396 DEBUG} - https://api.powerbi.com:443 &#34;GET /v1.0/myorg/groups/4e4e4bd1-e7da-4a19-abad-0fecd51e9b20/dashboards/c5558acb-984a-4ed1-b37a-d9808feea1cb/tiles HTTP/1.1&#34; 200 838
+[2018-04-04 20:32:26,576] {connectionpool._make_request:396 DEBUG} - https://api.powerbi.com:443 &#34;GET /v1.0/myorg/groups/4e4e4bd1-e7da-4a19-abad-0fecd51e9b20/dashboards/c5558acb-984a-4ed1-b37a-d9808feea1cb/tiles HTTP/1.1&#34; 200 838
+[2018-04-04 20:32:26,597] {core._request:43 DEBUG} - {
+  &#34;@odata.context&#34;:&#34;http://api.powerbi.com/v1.0/myorg/groups/4e4e4bd1-e7da-4a19-abad-0fecd51e9b20/$metadata#tiles&#34;,&#34;value&#34;:[
+    {
+      &#34;id&#34;:&#34;f11718c6-8542-4286-bd73-a7cb0e7baed4&#34;,&#34;title&#34;:&#34;Number of cameras&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=f11718c6-8542-4286-bd73-a7cb0e7baed4&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;6b5e8397-80a6-42bd-9024-cbbe67cb111d&#34;,&#34;title&#34;:&#34;Males&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=6b5e8397-80a6-42bd-9024-cbbe67cb111d&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;7547e595-424d-4284-82fc-7a2617dbeefa&#34;,&#34;title&#34;:&#34;Females&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=7547e595-424d-4284-82fc-7a2617dbeefa&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;df5202f2-5a6d-46c9-b383-cfa7ee23fc09&#34;,&#34;title&#34;:&#34;Smile level&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=df5202f2-5a6d-46c9-b383-cfa7ee23fc09&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;5ec010da-5c23-404b-ac58-97fab29c5c50&#34;,&#34;title&#34;:&#34;Gender Demographics&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=5ec010da-5c23-404b-ac58-97fab29c5c50&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;88874fce-8317-45f8-898d-7382e2b4cb4d&#34;,&#34;title&#34;:&#34;Latest Reading&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=88874fce-8317-45f8-898d-7382e2b4cb4d&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;9d4bec8b-7dca-4950-a528-b5613c563708&#34;,&#34;title&#34;:&#34;Anger level&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=9d4bec8b-7dca-4950-a528-b5613c563708&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;84482a58-045b-43ec-98a8-d44c4c8ce5e1&#34;,&#34;title&#34;:&#34;Emotions&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=84482a58-045b-43ec-98a8-d44c4c8ce5e1&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;1d8f72bd-42ad-4d74-95ae-8ed2eb23a2dd&#34;,&#34;title&#34;:&#34;People count, Camera count&#34;,&#34;subTitle&#34;:&#34;by Time, Males, Females&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=1d8f72bd-42ad-4d74-95ae-8ed2eb23a2dd&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;0ccbf9cc-7ee5-49db-9faa-f1ce2c9a969f&#34;,&#34;title&#34;:&#34;Average age by time&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=0ccbf9cc-7ee5-49db-9faa-f1ce2c9a969f&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;40e0ced7-3a83-4249-95bd-424dace8727d&#34;,&#34;title&#34;:&#34;People by time&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=40e0ced7-3a83-4249-95bd-424dace8727d&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;53319afc-b61e-4927-865b-fcaab72192a3&#34;,&#34;title&#34;:&#34;People at the cameras now&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=53319afc-b61e-4927-865b-fcaab72192a3&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    }
+  ]
+}
+[2018-04-04 20:32:26,597] {core._request:43 DEBUG} - {
+  &#34;@odata.context&#34;:&#34;http://api.powerbi.com/v1.0/myorg/groups/4e4e4bd1-e7da-4a19-abad-0fecd51e9b20/$metadata#tiles&#34;,&#34;value&#34;:[
+    {
+      &#34;id&#34;:&#34;f11718c6-8542-4286-bd73-a7cb0e7baed4&#34;,&#34;title&#34;:&#34;Number of cameras&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=f11718c6-8542-4286-bd73-a7cb0e7baed4&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;6b5e8397-80a6-42bd-9024-cbbe67cb111d&#34;,&#34;title&#34;:&#34;Males&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=6b5e8397-80a6-42bd-9024-cbbe67cb111d&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;7547e595-424d-4284-82fc-7a2617dbeefa&#34;,&#34;title&#34;:&#34;Females&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=7547e595-424d-4284-82fc-7a2617dbeefa&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;df5202f2-5a6d-46c9-b383-cfa7ee23fc09&#34;,&#34;title&#34;:&#34;Smile level&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=df5202f2-5a6d-46c9-b383-cfa7ee23fc09&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;5ec010da-5c23-404b-ac58-97fab29c5c50&#34;,&#34;title&#34;:&#34;Gender Demographics&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=5ec010da-5c23-404b-ac58-97fab29c5c50&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;88874fce-8317-45f8-898d-7382e2b4cb4d&#34;,&#34;title&#34;:&#34;Latest Reading&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=88874fce-8317-45f8-898d-7382e2b4cb4d&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;9d4bec8b-7dca-4950-a528-b5613c563708&#34;,&#34;title&#34;:&#34;Anger level&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=9d4bec8b-7dca-4950-a528-b5613c563708&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;84482a58-045b-43ec-98a8-d44c4c8ce5e1&#34;,&#34;title&#34;:&#34;Emotions&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=84482a58-045b-43ec-98a8-d44c4c8ce5e1&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;1d8f72bd-42ad-4d74-95ae-8ed2eb23a2dd&#34;,&#34;title&#34;:&#34;People count, Camera count&#34;,&#34;subTitle&#34;:&#34;by Time, Males, Females&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=1d8f72bd-42ad-4d74-95ae-8ed2eb23a2dd&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;0ccbf9cc-7ee5-49db-9faa-f1ce2c9a969f&#34;,&#34;title&#34;:&#34;Average age by time&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=0ccbf9cc-7ee5-49db-9faa-f1ce2c9a969f&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;40e0ced7-3a83-4249-95bd-424dace8727d&#34;,&#34;title&#34;:&#34;People by time&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=40e0ced7-3a83-4249-95bd-424dace8727d&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    },{
+      &#34;id&#34;:&#34;53319afc-b61e-4927-865b-fcaab72192a3&#34;,&#34;title&#34;:&#34;People at the cameras now&#34;,&#34;embedUrl&#34;:&#34;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=53319afc-b61e-4927-865b-fcaab72192a3&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#34;,&#34;rowSpan&#34;:0,&#34;colSpan&#34;:0,&#34;reportId&#34;:&#34;a05296d9-759f-4439-99fe-44d38b46b94a&#34;,&#34;datasetId&#34;:&#34;89230206-d927-4da7-9252-9efa1b03486b&#34;
+    }
+  ]
+}
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[21]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;colSpan&#39;: 0,
+  &#39;datasetId&#39;: &#39;89230206-d927-4da7-9252-9efa1b03486b&#39;,
+  &#39;embedUrl&#39;: &#39;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=f11718c6-8542-4286-bd73-a7cb0e7baed4&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#39;,
+  &#39;id&#39;: &#39;f11718c6-8542-4286-bd73-a7cb0e7baed4&#39;,
+  &#39;reportId&#39;: &#39;a05296d9-759f-4439-99fe-44d38b46b94a&#39;,
+  &#39;rowSpan&#39;: 0,
+  &#39;title&#39;: &#39;Number of cameras&#39;},
+ {&#39;colSpan&#39;: 0,
+  &#39;datasetId&#39;: &#39;89230206-d927-4da7-9252-9efa1b03486b&#39;,
+  &#39;embedUrl&#39;: &#39;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=6b5e8397-80a6-42bd-9024-cbbe67cb111d&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#39;,
+  &#39;id&#39;: &#39;6b5e8397-80a6-42bd-9024-cbbe67cb111d&#39;,
+  &#39;reportId&#39;: &#39;a05296d9-759f-4439-99fe-44d38b46b94a&#39;,
+  &#39;rowSpan&#39;: 0,
+  &#39;title&#39;: &#39;Males&#39;},
+ {&#39;colSpan&#39;: 0,
+  &#39;datasetId&#39;: &#39;89230206-d927-4da7-9252-9efa1b03486b&#39;,
+  &#39;embedUrl&#39;: &#39;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=7547e595-424d-4284-82fc-7a2617dbeefa&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#39;,
+  &#39;id&#39;: &#39;7547e595-424d-4284-82fc-7a2617dbeefa&#39;,
+  &#39;reportId&#39;: &#39;a05296d9-759f-4439-99fe-44d38b46b94a&#39;,
+  &#39;rowSpan&#39;: 0,
+  &#39;title&#39;: &#39;Females&#39;},
+ {&#39;colSpan&#39;: 0,
+  &#39;datasetId&#39;: &#39;89230206-d927-4da7-9252-9efa1b03486b&#39;,
+  &#39;embedUrl&#39;: &#39;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=df5202f2-5a6d-46c9-b383-cfa7ee23fc09&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#39;,
+  &#39;id&#39;: &#39;df5202f2-5a6d-46c9-b383-cfa7ee23fc09&#39;,
+  &#39;reportId&#39;: &#39;a05296d9-759f-4439-99fe-44d38b46b94a&#39;,
+  &#39;rowSpan&#39;: 0,
+  &#39;title&#39;: &#39;Smile level&#39;},
+ {&#39;colSpan&#39;: 0,
+  &#39;datasetId&#39;: &#39;89230206-d927-4da7-9252-9efa1b03486b&#39;,
+  &#39;embedUrl&#39;: &#39;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=5ec010da-5c23-404b-ac58-97fab29c5c50&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#39;,
+  &#39;id&#39;: &#39;5ec010da-5c23-404b-ac58-97fab29c5c50&#39;,
+  &#39;reportId&#39;: &#39;a05296d9-759f-4439-99fe-44d38b46b94a&#39;,
+  &#39;rowSpan&#39;: 0,
+  &#39;title&#39;: &#39;Gender Demographics&#39;},
+ {&#39;colSpan&#39;: 0,
+  &#39;datasetId&#39;: &#39;89230206-d927-4da7-9252-9efa1b03486b&#39;,
+  &#39;embedUrl&#39;: &#39;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=88874fce-8317-45f8-898d-7382e2b4cb4d&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#39;,
+  &#39;id&#39;: &#39;88874fce-8317-45f8-898d-7382e2b4cb4d&#39;,
+  &#39;reportId&#39;: &#39;a05296d9-759f-4439-99fe-44d38b46b94a&#39;,
+  &#39;rowSpan&#39;: 0,
+  &#39;title&#39;: &#39;Latest Reading&#39;},
+ {&#39;colSpan&#39;: 0,
+  &#39;datasetId&#39;: &#39;89230206-d927-4da7-9252-9efa1b03486b&#39;,
+  &#39;embedUrl&#39;: &#39;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=9d4bec8b-7dca-4950-a528-b5613c563708&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#39;,
+  &#39;id&#39;: &#39;9d4bec8b-7dca-4950-a528-b5613c563708&#39;,
+  &#39;reportId&#39;: &#39;a05296d9-759f-4439-99fe-44d38b46b94a&#39;,
+  &#39;rowSpan&#39;: 0,
+  &#39;title&#39;: &#39;Anger level&#39;},
+ {&#39;colSpan&#39;: 0,
+  &#39;datasetId&#39;: &#39;89230206-d927-4da7-9252-9efa1b03486b&#39;,
+  &#39;embedUrl&#39;: &#39;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=84482a58-045b-43ec-98a8-d44c4c8ce5e1&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#39;,
+  &#39;id&#39;: &#39;84482a58-045b-43ec-98a8-d44c4c8ce5e1&#39;,
+  &#39;reportId&#39;: &#39;a05296d9-759f-4439-99fe-44d38b46b94a&#39;,
+  &#39;rowSpan&#39;: 0,
+  &#39;title&#39;: &#39;Emotions&#39;},
+ {&#39;colSpan&#39;: 0,
+  &#39;datasetId&#39;: &#39;89230206-d927-4da7-9252-9efa1b03486b&#39;,
+  &#39;embedUrl&#39;: &#39;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=1d8f72bd-42ad-4d74-95ae-8ed2eb23a2dd&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#39;,
+  &#39;id&#39;: &#39;1d8f72bd-42ad-4d74-95ae-8ed2eb23a2dd&#39;,
+  &#39;reportId&#39;: &#39;a05296d9-759f-4439-99fe-44d38b46b94a&#39;,
+  &#39;rowSpan&#39;: 0,
+  &#39;subTitle&#39;: &#39;by Time, Males, Females&#39;,
+  &#39;title&#39;: &#39;People count, Camera count&#39;},
+ {&#39;colSpan&#39;: 0,
+  &#39;datasetId&#39;: &#39;89230206-d927-4da7-9252-9efa1b03486b&#39;,
+  &#39;embedUrl&#39;: &#39;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=0ccbf9cc-7ee5-49db-9faa-f1ce2c9a969f&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#39;,
+  &#39;id&#39;: &#39;0ccbf9cc-7ee5-49db-9faa-f1ce2c9a969f&#39;,
+  &#39;reportId&#39;: &#39;a05296d9-759f-4439-99fe-44d38b46b94a&#39;,
+  &#39;rowSpan&#39;: 0,
+  &#39;title&#39;: &#39;Average age by time&#39;},
+ {&#39;colSpan&#39;: 0,
+  &#39;datasetId&#39;: &#39;89230206-d927-4da7-9252-9efa1b03486b&#39;,
+  &#39;embedUrl&#39;: &#39;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=40e0ced7-3a83-4249-95bd-424dace8727d&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#39;,
+  &#39;id&#39;: &#39;40e0ced7-3a83-4249-95bd-424dace8727d&#39;,
+  &#39;reportId&#39;: &#39;a05296d9-759f-4439-99fe-44d38b46b94a&#39;,
+  &#39;rowSpan&#39;: 0,
+  &#39;title&#39;: &#39;People by time&#39;},
+ {&#39;colSpan&#39;: 0,
+  &#39;datasetId&#39;: &#39;89230206-d927-4da7-9252-9efa1b03486b&#39;,
+  &#39;embedUrl&#39;: &#39;https://app.powerbi.com/embed?dashboardId=c5558acb-984a-4ed1-b37a-d9808feea1cb&amp;tileId=53319afc-b61e-4927-865b-fcaab72192a3&amp;groupId=4e4e4bd1-e7da-4a19-abad-0fecd51e9b20&#39;,
+  &#39;id&#39;: &#39;53319afc-b61e-4927-865b-fcaab72192a3&#39;,
+  &#39;reportId&#39;: &#39;a05296d9-759f-4439-99fe-44d38b46b94a&#39;,
+  &#39;rowSpan&#39;: 0,
+  &#39;title&#39;: &#39;People at the cameras now&#39;}]</pre>
 </div>
 
 </div>
