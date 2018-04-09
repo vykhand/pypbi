@@ -35,7 +35,7 @@ class GenerateTokenMixin(object):
 
         data = '{{"accessLevel": "{}" {} }} '.format(access_level, identities)
         resp = requests.post(cll.format(**vars(self)), data = data, headers = headers)
-
+        log.debug(resp.text)
         return json.loads(resp.text)["token"]
 
 class Workspace(EntityMixin):
@@ -94,9 +94,51 @@ class Dashboard(EntityMixin, GenerateTokenMixin):
 
     def __repr__(self):
         log.debug(vars(self))
-        return "Report ID: %s Name: %s" % (self.dashboard_id, self.dashboard_name)
+        return "Dashboard ID: %s Name: %s" % (self.dashboard_id, self.dashboard_name)
     def get_token(self,  access_level = "View",  identities = ""):
         return self._get_token("get_dashboard_token", access_level, identities)
+
+    def get_tiles(self):
+        return self._get_entities(Tile, "get_tiles")
+
+    def get_embedUrl(self):
+        ''' Dashboards are messed up since they don't return embedUrl
+            from REST API. embedUrls are available from tiles,
+            and they are the same for all tiles.
+            C# API returns it by default, and here we have to get the first
+            tile and give back its embedUrl
+        '''
+        embedUrl = ""
+        try:
+            embedUrl = self.get_tiles()[0].embedUrl
+        except Exception as e:
+            log.error("Dashboard {} does not have any tiles".format(self))
+            raise e
+        self.embedUrl = embedUrl
+        return embedUrl
+
+class Tile(GenerateTokenMixin):
+    def __init__(self, dashboard, tile):
+        self._pbi = dashboard._pbi
+        self._wks = dashboard._wks
+        self.wks_id = dashboard.wks_id
+        self.dashboard_id = dashboard.dashboard_id
+        self.tile_id = tile["id"]
+        self.title = tile["title"]
+        self.subTitle = tile.get("subTitle")
+        self.embedUrl = tile["embedUrl"]
+        self.rowSpan = tile.get("rowSpan")
+        self.colSpan = tile.get("colSpan")
+        self.reportId = tile["reportId"]
+        self.datasetId = tile["datasetId"]
+    def __str__(self):
+        return "Tile ID: %s Name: %s" % (self.tile_id, self.title)
+    def __repr__(self):
+        log.debug(vars(self))
+        return "Tile ID: %s Name: %s" % (self.tile_id, self.title)
+    def get_token(self,  access_level = "View",  identities = ""):
+        return self._get_token("get_tile_token", access_level, identities)
+
 
 class Report(EntityMixin, GenerateTokenMixin):
     def __init__(self, wks, report):
