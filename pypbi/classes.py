@@ -48,6 +48,7 @@ class Workspace(EntityMixin):
         self.wks_id = wks_id
         self.wks_name = wks_name
         self.isReadOnly = isReadOnly
+
     def __str__(self):
         s = "Workspace ID: %s Name: %s" % (self.wks_id, self.wks_name) \
                                     if self.wks_id is not None \
@@ -88,7 +89,13 @@ class Dashboard(EntityMixin, GenerateTokenMixin):
         self._wks = wks
         self.wks_id = wks.wks_id
         self.dashboard_id = dashboard["id"]
-        self.dashboard_name = dashboard["displayName"]
+        self.dashboard_name  = dashboard["displayName"]
+        self.embedUrl = dashboard["embedUrl"]
+
+        for key in dashboard:
+            setattr(self, key, dashboard[key])
+        self.dashboard_dict = dashboard
+
     def __str__(self):
         return "Dashboard ID: %s Name: %s" % (self.dashboard_id, self.dashboard_name)
 
@@ -101,21 +108,7 @@ class Dashboard(EntityMixin, GenerateTokenMixin):
     def get_tiles(self):
         return self._get_entities(Tile, "get_tiles")
 
-    def get_embedUrl(self):
-        ''' Dashboards are messed up since they don't return embedUrl
-            from REST API. embedUrls are available from tiles,
-            and they are the same for all tiles.
-            C# API returns it by default, and here we have to get the first
-            tile and give back its embedUrl
-        '''
-        embedUrl = ""
-        try:
-            embedUrl = self.get_tiles()[0].embedUrl
-        except Exception as e:
-            log.error("Dashboard {} does not have any tiles".format(self))
-            raise e
-        self.embedUrl = embedUrl
-        return embedUrl
+
 
 class Tile(GenerateTokenMixin):
     def __init__(self, dashboard, tile):
@@ -125,12 +118,11 @@ class Tile(GenerateTokenMixin):
         self.dashboard_id = dashboard.dashboard_id
         self.tile_id = tile["id"]
         self.title = tile["title"]
-        self.subTitle = tile.get("subTitle")
-        self.embedUrl = tile["embedUrl"]
-        self.rowSpan = tile.get("rowSpan")
-        self.colSpan = tile.get("colSpan")
-        self.reportId = tile["reportId"]
-        self.datasetId = tile["datasetId"]
+
+        for key in tile:
+            setattr(self, key, tile[key])
+        self.tile_dict = tile
+
     def __str__(self):
         return "Tile ID: %s Name: %s" % (self.tile_id, self.title)
     def __repr__(self):
@@ -147,8 +139,9 @@ class Report(EntityMixin, GenerateTokenMixin):
         self.wks_id = wks.wks_id
         self.report_id = report["id"]
         self.report_name = report["name"]
-        self.embedUrl = report["embedUrl"]
-        self.webUrl = report["webUrl"]
+        for key in report:
+            setattr(self, key, report[key])
+        self.report_dict = report
 
     def __str__(self):
         return "Report ID: %s Name: %s" % (self.report_id, self.report_name)
@@ -171,8 +164,9 @@ class Dataset(EntityMixin):
         self.ds_id = ds["id"]
         self.ds_name = ds["name"]
         self.addRowsAPIEnabled = ds["addRowsAPIEnabled"]
-        self.isRefreshable = ds["isRefreshable"]
-        self.details = ds
+        self.dataset_dict = ds
+        for key in ds:
+            setattr(self, key, ds[key])
     def __str__(self):
         return "Dataset ID: %s Name: %s" % (self.ds_id, self.ds_name)
 
@@ -195,6 +189,11 @@ class Table(object):
         self.ds_id = ds.ds_id
         self.wks_id = ds._wks.wks_id
         self.tbl_name = tbl["name"]
+        self.table_dict = tbl
+
+        for key in tbl:
+            setattr(self, key, tbl[key])
+
     def _str_(self):
         return "Table: %s" % (self.tbl_name)
 
